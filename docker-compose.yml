@@ -1,22 +1,22 @@
 version: '3.3'
 
 services:
-  # frontend:
-  #   container_name: "${PROJECT_NAME}-frontend-dev"
-  #   build:
-  #     context: .
-  #     dockerfile: frontend/Dockerfile
-  #   image: ${PROJECT_NAME}-frontend-dev:latest
-  #   restart: unless-stopped
-  #   tty: true
-  #   environment:
-  #     NODE_ENV: development
-  #   volumes:
-  #     - ${FRONTEND_DIR}:/app
-  #   ports:
-  #     - ${FRONTEND_PORT}:3000
-  #   networks:
-  #     - app-network
+  frontend:
+    container_name: "${PROJECT_NAME}-frontend-dev"
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    image: ${PROJECT_NAME}-frontend-dev:latest
+    restart: unless-stopped
+    tty: true
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ${FRONTEND_DIR}:/app
+    ports:
+      - ${FRONTEND_PORT}:3000
+    networks:
+      - app-network
 
   mongo:
     container_name: "${PROJECT_NAME}-mongo-dev"
@@ -32,23 +32,23 @@ services:
       - app-network
 
   # backend:
-  #   container_name: "${PROJECT_NAME}-backend-dev"
-  #   build:
-  #     context: .
-  #     dockerfile: backend/Dockerfile
-  #   image: ${PROJECT_NAME}-backend-dev:latest
-  #   restart: unless-stopped
-  #   depends_on:
-  #     - mongo
-  #   tty: true
-  #   environment:
-  #     NODE_ENV: development
-  #   volumes:
-  #     - ${BACKEND_DIR}:/app
-  #   ports:
-  #     - ${BACKEND_PORT}:5000
-  #   networks:
-  #     - app-network
+    container_name: "${PROJECT_NAME}-backend-dev"
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: ${PROJECT_NAME}-backend-dev:latest
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    tty: true
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ${BACKEND_DIR}:/app
+    ports:
+      - ${BACKEND_PORT}:5000
+    networks:
+      - app-network
 
 networks:
   app-network:
